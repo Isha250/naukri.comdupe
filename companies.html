@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Listings</title>
+    <style>
+        /* Basic styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+        }
+        .job-listing {
+            background-color: #fff;
+            margin-top: 20px;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .job-title {
+            font-weight: bold;
+            font-size: 18px;
+        }
+        .job-company {
+            margin-top: 5px;
+            color: #333;
+        }
+        .job-requirements {
+            margin-top: 10px;
+            color: #555;
+        }
+        .button-container {
+            margin-top: 15px;
+        }
+        .button-container button {
+            padding: 10px 15px;
+            margin-right: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+        .button-container button:last-child {
+            background-color: #28a745;
+        }
+        #job-list {
+            display: none; /* Hide initially */
+        }
+    </style>
+</head>
+<body>
+<h1>Company Hiring Listings</h1>
+<button onclick="showJobListings()">Show Job Listings</button>
+
+<div id="job-list">
+    <!-- Google Job Listing -->
+    <div class="job-listing">
+        <div class="job-title">Software Engineer</div>
+        <div class="job-company">Company: Google</div>
+        <div class="job-requirements">Requirements: Python, C++, System Design</div>
+        <div class="button-container">
+            <button onclick="bookInterview('Google')">Book an Interview</button>
+            <button onclick="viewProfile('Google')">View Profile</button>
+        </div>
+    </div>
+
+    <!-- Microsoft Job Listing -->
+    <div class="job-listing">
+        <div class="job-title">Cloud Solutions Architect</div>
+        <div class="job-company">Company: Microsoft</div>
+        <div class="job-requirements">Requirements: Azure, Cloud Architecture, DevOps</div>
+        <div class="button-container">
+            <button onclick="bookInterview('Microsoft')">Book an Interview</button>
+            <button onclick="viewProfile('Microsoft')">View Profile</button>
+        </div>
+    </div>
+
+    <!-- Amazon Job Listing -->
+    <div class="job-listing">
+        <div class="job-title">Data Engineer</div>
+        <div class="job-company">Company: Amazon</div>
+        <div class="job-requirements">Requirements: SQL, AWS, ETL Processes</div>
+        <div class="button-container">
+            <button onclick="bookInterview('Amazon')">Book an Interview</button>
+            <button onclick="viewProfile('Amazon')">View Profile</button>
+        </div>
+    </div>
+
+    <!-- Facebook Job Listing -->
+    <div class="job-listing">
+        <div class="job-title">Product Manager</div>
+        <div class="job-company">Company: Facebook</div>
+        <div class="job-requirements">Requirements: Product Lifecycle Management, Agile Methodologies</div>
+        <div class="button-container">
+            <button onclick="bookInterview('Facebook')">Book an Interview</button>
+            <button onclick="viewProfile('Facebook')">View Profile</button>
+        </div>
+    </div>
+
+    <!-- Tesla Job Listing -->
+    <div class="job-listing">
+        <div class="job-title">Mechanical Engineer</div>
+        <div class="job-company">Company: Tesla</div>
+        <div class="job-requirements">Requirements: CAD, Manufacturing Processes, Automotive Industry Experience</div>
+        <div class="button-container">
+            <button onclick="bookInterview('Tesla')">Book an Interview</button>
+            <button onclick="viewProfile('Tesla')">View Profile</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    function showJobListings() {
+        var jobList = document.getElementById('job-list');
+        if (jobList.style.display === "none") {
+            jobList.style.display = "block";
+        } else {
+            jobList.style.display = "none";
+        }
+    }
+
+    function bookInterview(companyName) {
+        alert('You have selected to book an interview with ' + companyName);
+        // Additional logic to handle interview booking can be added here
+    }
+
+    function viewProfile(companyName) {
+        alert('You are viewing the profile for ' + companyName);
+        // Additional logic to display the company profile can be added here
+    }
+</script>
+</body>
+</html>
+

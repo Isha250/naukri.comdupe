@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Listings</title>
+    <link rel="stylesheet" href="afterhomepage.css">
+</head>
+<body>
+<div class="job-card">
+    <div class="company-logo">
+        <img src="job1.webp" alt="Company 1 Logo" style="width:400px;height:200px;">
+    </div>
+    <div class="job-card-details">
+        <h3>Product Manager</h3>
+        <p>Innovate Solutions - Delhi</p>
+        <p>Posted 2 hours ago</p>
+        <p>Be among the first 25 applicants</p>
+        <button class="apply-button">Apply</button>
+        <button class="save-button">Save</button>
+        <button class="book-appointment-button" onclick="toggleAppointmentForm()">Book an Appointment/Interview</button>
+    </div>
+</div>
+
+<div class="job-card">
+    <div class="company-logo">
+        <img src="job2.webp" alt="Company 2 Logo" style="width:400px;height:200px;">
+    </div>
+    <div class="job-card-details">
+        <h3>Product Manager</h3>
+        <p>NextGen Tech - Bengaluru</p>
+        <p>Posted 5 hours ago</p>
+        <p>Be among the first 25 applicants</p>
+        <button class="apply-button">Apply</button>
+        <button class="save-button">Save</button>
+        <button class="book-appointment-button" onclick="toggleAppointmentForm()">Book an Appointment/Interview</button>
+    </div>
+</div>
+
+<div class="job-card">
+    <div class="company-logo">
+        <img src="job3.webp" alt="Company 3 Logo" style="width:400px;height:200px;">
+    </div>
+    <div class="job-card-details">
+        <h3>Product Manager</h3>
+        <p>Alpha Innovations - Hyderabad</p>
+        <p>Posted 1 day ago</p>
+        <p>Be among the first 25 applicants</p>
+        <button class="apply-button">Apply</button>
+        <button class="save-button">Save</button>
+        <button class="book-appointment-button" onclick="toggleAppointmentForm()">Book an Appointment/Interview</button>
+    </div>
+</div>
+<script>
+    function toggleAppointmentForm() {
+        var formContainer = document.getElementById('appointmentForm');
+        if (formContainer.style.display === "none" || formContainer.style.display === "") {
+            formContainer.style.display = "block";
+        } else {
+            formContainer.style.display = "none";
+        }
+    }
+    function filterJobs() {
+        var dropdown = document.getElementById('jobDropdown');
+        var selectedJob = dropdown.value;
+
+        // Implement the filter logic based on the selected job value.
+        // For example, you can filter job cards by hiding/showing based on the selected value.
+        // This is just a placeholder for the actual implementation.
+        console.log("Selected job: " + selectedJob);
+    }
+
+
+</script>
+
+
+<!-- Hidden form that appears when booking an appointment -->
+<div class="appointment-form-container" id="appointmentForm">
+    <form>
+        <label for="fullName">Full Name:</label>
+        <input type="text" id="fullName" name="fullName" required><br>
+
+        <label for="experience">Experience (years):</label>
+        <input type="number" id="experience" name="experience" min="0" required><br>
+
+        <label for="jobApplyingFor">Job Applying For:</label>
+        <input type="text" id="jobApplyingFor" name="jobApplyingFor" required><br>
+
+        <label for="appointmentDate">Select Date:</label>
+        <input type="date" id="appointmentDate" name="appointmentDate" required><br>
+
+        <button type="submit">Submit</button>
+        <button type="button" onclick="toggleAppointmentForm()">Cancel</button>
+    </form>
+</div>
+
+<script src="afterhomepage.js"></script>
+</body>
+</html>

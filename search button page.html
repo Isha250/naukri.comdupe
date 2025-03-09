@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Job Search</title>
+    <style>
+        /* Basic styling for the body and main elements */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        main {
+            padding: 20px;
+            max-width: 800px;
+            margin: auto;
+            background: white;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Styling for the search form */
+        .search-bar {
+            margin-bottom: 20px;
+        }
+
+        .search-bar input, .search-bar select, .search-bar button {
+            margin: 5px;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            font-size: 16px;
+            width: calc(100% - 22px); /* Ensure full width with margins */
+        }
+
+        .search-bar input[type="number"] {
+            width: calc(50% - 22px); /* Adjust width for number inputs */
+        }
+
+        .search-bar button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            cursor: pointer;
+            padding: 12px;
+        }
+
+        .search-bar button:hover {
+            background-color: #218838;
+        }
+
+        /* Job list styling */
+        #itemList {
+            list-style-type: none;
+            padding: 0;
+            display: none; /* Hide all items by default */
+        }
+
+        #itemList li {
+            padding: 10px;
+            border: 1px solid #ddd;
+            margin: 5px 0;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<main>
+    <section class="search-bar">
+        <h1>Advanced Job Search</h1>
+        <form id="searchForm">
+            <select id="searchLocation">
+                <option value="">Select a location...</option>
+                <option value="Colaba">Colaba</option>
+                <option value="Parel">Parel</option>
+                <option value="Virar">Virar</option>
+                <option value="Andheri">Andheri</option>
+                <option value="Lower Parel">Lower Parel</option>
+
+            </select>
+            <select id="jobDropdown">
+                <option value="">Select a job type...</option>
+                <option value="Software Engineer">Software Engineer</option>
+                <option value="Product Manager">Product Manager</option>
+                <option value="HR Manager">HR Manager</option>
+                <option value="Full Stack Developer">Full Stack Developer</option>
+
+
+            <input type="number" id="minSalary" placeholder="Min Salary" min="0">
+            <input type="number" id="maxSalary" placeholder="Max Salary" min="0">
+            <button type="button" id="searchButton">Search</button>
+        </form>
+    </section>
+
+    <ul id="itemList">
+        <li data-type="Software Engineer" data-location="Colaba">Software Engineer - 70000 - Colaba</li>
+        <li data-type="Software Engineer" data-location="Parel">Software Engineer - 70000 - Parel</li>
+        <li data-type="Software Engineer" data-location="Virar">Software Engineer - 70000 - Virar</li>
+        <li data-type="Software Engineer" data-location="Andheri">Software Engineer - 70000 - Andheri</li>
+        <li data-type="Software Engineer" data-location="Colaba">Software Engineer - 50000 - Colaba</li>
+        <li data-type="Software Engineer" data-location="Parel">Software Engineer - 50000 - Parel</li>
+        <li data-type="Software Engineer" data-location="Virar">Software Engineer - 50000 - Virar</li>
+        <li data-type="Software Engineer" data-location="Andheri">Software Engineer - 50000 - Andheri</li>
+        <li data-type="Product Manager" data-location="Andheri">Product Manager - 90000 - Andheri</li>
+        <li data-type="Product Manager" data-location="Colaba">Product Manager - 70000 - Colaba</li>
+        <li data-type="Product Manager" data-location="Parel">Product Manager - 70000 - Parel</li>
+        <li data-type="Product Manager" data-location="Virar">Product Manager - 70000 - Virar</li>
+        <li data-type="Product Manager" data-location="Andheri">Product Manager - 70000 - Andheri</li>
+        <li data-type="Product Manager" data-location="Colaba">Product Manager - 50000 - Colaba</li>
+        <li data-type="Product Manager" data-location="Parel">Product Manager - 50000 - Parel</li>
+        <li data-type="Product Manager" data-location="Virar">Product Manager - 50000 - Virar</li>
+        <li data-type="Product Manager" data-location="Andheri">Product Manager - 50000 - Andheri</li>
+        <li data-type="HR Manager" data-location="andheri">HR Manager - 50000 - andheri</li>
+        <li data-type="HR Manager" data-location="virar">HR Manager - 50000 - virar</li>
+        <li data-type="HR Manager" data-location="lower parel">HR Manager - 50000 - lowerParel</li>
+        <li data-type="HR Manager" data-location="colaba">HR Manager - 50000 - colaba</li>
+        <li data-type="Full Stack Developer" data-location="Virar">Full Stack Developer - 100000 - Virar</li>
+        <li data-type="Full Stack Developer" data-location="andheri">Full Stack Developer - 100000 - andheri</li>
+        <li data-type="Full Stack Developer" data-location="colaba">Full Stack Developer - 100000 - colaba</li>
+        <li data-type="Full Stack Developer" data-location="Virar">Full Stack Developer - 70000 - virar</li>
+
+
+    </ul>
+</main>
+
+<script>
+    document.getElementById('searchButton').addEventListener('click', function() {
+        const location = document.getElementById('searchLocation').value.toLowerCase();
+        const jobType = document.getElementById('jobDropdown').value.toLowerCase();
+        const minSalary = parseInt(document.getElementById('minSalary').value) || 0;
+        const maxSalary = parseInt(document.getElementById('maxSalary').value) || Infinity;
+
+        const items = document.querySelectorAll('#itemList li');
+
+        let anyVisible = false; // Flag to track if any item is visible
+
+        items.forEach(item => {
+            const itemText = item.textContent.toLowerCase();
+            const itemSalary = parseInt(itemText.split('-')[1].trim().replace('$', '').replace(',', '')) || 0;
+            const itemLocation = item.getAttribute('data-location').toLowerCase();
+            const itemType = item.getAttribute('data-type').toLowerCase();
+
+            if (
+                (location === '' || itemLocation.includes(location)) &&
+                (jobType === '' || itemType === jobType) &&
+                itemSalary >= minSalary &&
+                itemSalary <= maxSalary
+            ) {
+                item.style.display = 'list-item';
+                anyVisible = true; // Set flag to true if any item is visible
+            } else {
+                item.style.display = 'none';
+            }
+        });
+
+        // Show or hide the item list based on whether any items are visible
+        document.getElementById('itemList').style.display = anyVisible ? 'block' : 'none';
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Search</title>
+    <link rel="stylesheet" href="styles2.css">
+</head>
+<body>
+<header>
+    <div class="logo">
+        <a href="gpt.html"> <img src="job2.jpeg" alt="Naukri Logo">
+    </div>
+    <nav>
+        <ul>
+            <li><a href="#">Jobs</a></li>
+            <li><a href="#">Companies</a></li>
+            <li><a href="#">Services</a></li>
+        </ul>
+    </nav>
+    <div class="auth-buttons">
+        <a href="http://localhost:300//submit-form"><button class="login">Login</button></a>
+        <a href="registerpage.html"><button class="register">Register</button></a>
+    </div>
+</header>
+
+<main>
+    <h1>Find your dream job now</h1>
+    <p>5 lakh+ jobs for you to explore</p>
+    <div class="search-bar">
+        <form id="searchForm">
+            <select id="searchLocation">
+                <option value="">Select a location...</option>
+                <option value="Colaba">Colaba</option>
+                <option value="Parel">Parel</option>
+                <option value="Virar">Virar</option>
+                <option value="Andheri">Andheri</option>
+                <option value="Lower Parel">Lower Parel</option>
+            </select>
+            <select id="jobDropdown">
+                <option value="">Select a job type...</option>
+                <option value="Software Engineer">Software Engineer</option>
+                <option value="Product Manager">Product Manager</option>
+                <option value="HR Manager">HR Manager</option>
+                <option value="Full Stack Developer">Full Stack Developer</option>
+            </select>
+            <input type="number" id="salary" placeholder="Salary" min="0">
+            <button type="button" id="searchButton">Search</button>
+        </form>
+        <ul id="itemList">
+            <!-- Job items with data attributes -->
+            <li data-type="Software Engineer" data-location="Colaba">Software Engineer - 70000 - Colaba</li>
+            <li data-type="Software Engineer" data-location="Parel">Software Engineer - 70000 - Parel</li>
+            <li data-type="Software Engineer" data-location="Virar">Software Engineer - 70000 - Virar</li>
+            <li data-type="Software Engineer" data-location="Andheri">Software Engineer - 70000 - Andheri</li>
+            <li data-type="Software Engineer" data-location="Colaba">Software Engineer - 50000 - Colaba</li>
+            <li data-type="Software Engineer" data-location="Parel">Software Engineer - 50000 - Parel</li>
+            <li data-type="Software Engineer" data-location="Virar">Software Engineer - 50000 - Virar</li>
+            <li data-type="Software Engineer" data-location="Andheri">Software Engineer - 50000 - Andheri</li>
+            <li data-type="Product Manager" data-location="Andheri">Product Manager - 90000 - Andheri</li>
+            <li data-type="Product Manager" data-location="Colaba">Product Manager - 70000 - Colaba</li>
+            <li data-type="Product Manager" data-location="Parel">Product Manager - 70000 - Parel</li>
+            <li data-type="Product Manager" data-location="Virar">Product Manager - 70000 - Virar</li>
+            <li data-type="Product Manager" data-location="Andheri">Product Manager - 70000 - Andheri</li>
+            <li data-type="Product Manager" data-location="Colaba">Product Manager - 50000 - Colaba</li>
+            <li data-type="Product Manager" data-location="Parel">Product Manager - 50000 - Parel</li>
+            <li data-type="Product Manager" data-location="Virar">Product Manager - 50000 - Virar</li>
+            <li data-type="Product Manager" data-location="Andheri">Product Manager - 50000 - Andheri</li>
+            <li data-type="HR Manager" data-location="Andheri">HR Manager - 50000 - Andheri</li>
+            <li data-type="HR Manager" data-location="Virar">HR Manager - 50000 - Virar</li>
+            <li data-type="HR Manager" data-location="Lower Parel">HR Manager - 50000 - Lower Parel</li>
+            <li data-type="HR Manager" data-location="Colaba">HR Manager - 50000 - Colaba</li>
+            <li data-type="Full Stack Developer" data-location="Virar">Full Stack Developer - 100000 - Virar</li>
+            <li data-type="Full Stack Developer" data-location="Andheri">Full Stack Developer - 100000 - Andheri</li>
+            <li data-type="Full Stack Developer" data-location="Colaba">Full Stack Developer - 100000 - Colaba</li>
+            <li data-type="Full Stack Developer" data-location="Virar">Full Stack Developer - 70000 - Virar</li>
+        </ul>
+    </div>
+    <div class="resume-ad">
+        <h2>Get experts to craft your resume!</h2>
+        <p>Tailor it as per your needs by sharing your feedback</p>
+        <a href="https://resume.io/"><button>Know more</button>
+    </div>
+    <div class="categories">
+        <button>Remote</button>
+        <button>MNC</button>
+        <button>Engineering</button>
+        <button>Software & IT</button>
+        <button>Internship</button>
+        <button>Project Mgmt.</button>
+        <button>Marketing</button>
+        <button>Fortune 500</button>
+        <button>Banking & Finance</button>
+        <button>HR</button>
+        <button>Supply Chain</button>
+    </div>
+</main>
+<script>
+    document.getElementById('searchButton').addEventListener('click', function() {
+        const location = document.getElementById('searchLocation').value.toLowerCase();
+        const jobType = document.getElementById('jobDropdown').value.toLowerCase();
+        const salary = parseInt(document.getElementById('salary').value) || 0;
+
+        const items = document.querySelectorAll('#itemList li');
+
+        let anyVisible = false; // Flag to track if any item is visible
+
+        items.forEach(item => {
+            const itemText = item.textContent.toLowerCase();
+            const itemSalary = parseInt(itemText.split('-')[1].trim()) || 0;
+            const itemLocation = item.getAttribute('data-location').toLowerCase();
+            const itemType = item.getAttribute('data-type').toLowerCase();
+
+            if (
+                (location === '' || itemLocation.includes(location)) &&
+                (jobType === '' || itemType === jobType) &&
+                itemSalary >= salary
+            ) {
+                item.style.display = 'list-item';
+                anyVisible = true; // Set flag to true if any item is visible
+            } else {
+                item.style.display = 'none';
+            }
+        });
+
+        // Show or hide the item list based on whether any items are visible
+        document.getElementById('itemList').style.display = anyVisible ? 'block' : 'none';
+    });
+</script>
+</body>
+</html>
+

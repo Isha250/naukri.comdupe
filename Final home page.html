@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Search</title>
+    <link rel="stylesheet" href="finalhomepagestyle.css">
+    <style>
+        /* Basic styling for the buttons */
+        .categories button {
+            margin: 5px;
+            padding: 10px 15px;
+            font-size: 16px;
+            cursor: pointer;
+            border: 1px solid #ddd;
+            background-color: #f0f0f0;
+            border-radius: 5px;
+        }
+
+        .categories button:hover {
+            background-color: #ddd;
+        }
+
+        /* Styling for the "Know more" button */
+        .resume-ad button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            background-color: #4CAF50;
+            color: white;
+            border-radius: 5px;
+        }
+
+        .resume-ad button:hover {
+            background-color: #45a049;
+        }
+
+        /* Container for displaying additional information */
+        .info-container {
+            margin-top: 10px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+            display: none; /* Initially hidden */
+        }
+        .search-bar-container {
+            display: flex;
+            justify-content: center; /* Center the search bar horizontally */
+            margin: 20px 0; /* Adds space above and below the search bar */
+            width: 100%; /* Ensure the container takes up the full width of the page */
+        }
+        .search-bar {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background-color: #fff;
+            padding: 10px 20px;
+            border-radius: 30px; /* Rounded corners */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Optional: Adds a shadow for depth */
+        }
+
+        .search-bar select,
+        .search-bar input {
+            border: none;
+            outline: none;
+            font-size: 16px;
+            color: #6c757d; /* Gray text color */
+            background-color: transparent;
+            padding: 10px;
+            flex: 1;
+        }
+
+        .search-bar select {
+            -webkit-appearance: none; /* Removes default dropdown arrow in webkit browsers */
+            -moz-appearance: none; /* Removes default dropdown arrow in Firefox */
+            appearance: none;
+            background-color: transparent;
+        }
+
+        .search-bar button {
+            background-color: #0066ff; /* Blue background color */
+            color: #fff; /* White text color */
+            padding: 10px 20px;
+            border: none;
+            border-radius: 20px; /* Rounded corners */
+            cursor: pointer;
+            font-size: 16px;
+            white-space: nowrap; /* Prevents the text from wrapping */
+        }
+
+        .search-bar button:hover {
+            background-color: #0056d2; /* Darker blue on hover */
+        }
+
+
+
+
+
+        /* Styling for the job list */
+        #itemList {
+            list-style-type: none;
+            padding: 0;
+            margin-top: 20px;
+            max-height: 200px;
+            overflow-y: auto;
+            width: 100%;
+            text-align: center;
+            display: none; /* Initially hidden */
+        }
+
+        #itemList li {
+            padding: 10px;
+            border: 1px solid #ddd;
+            margin: 5px;
+            background-color: #f0f0f0;
+            border-radius: 5px;
+        }
+
+        #itemList li:hover {
+            background-color: #ddd;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <div class="logo">
+        <a href="gpt.html"> <img src="job2.jpg" alt="Naukri Logo">
+            <p>Profile</p></a>
+    </div>
+    <nav>
+        <ul>
+            <li><a href="afterhomepage.html">Jobs</a></li>
+            <li><a href="afterhomepage.html">Companies</a></li>
+            <li><a href="afterhomepage.html">Services</a></li>
+        </ul>
+    </nav>
+    <div class="auth-buttons">
+        <a href="finallogin.html"><button class="login">Login</button></a>
+        <a href="registerpage.html"><button class="register">Register</button></a>
+    </div>
+</header>
+
+<main>
+    <h1>Find your dream job now</h1>
+    <p> Jobs for you to explore</p>
+    <div class="search-bar">
+
+            <select id="jobDropdown" onchange="filterJobs()">
+                <option value="">Select a job...</option>
+                <option value="Software Engineer - Full Stack">Software Engineer - Full Stack</option>
+                <option value="Product Manager">Product Manager</option>
+                <option value="Marketing Executive">Marketing Executive</option>
+                <option value="Data Analyst">Data Analyst</option>
+                <option value="Graphic Designer">Graphic Designer</option>
+                <option value="Product Designer">Product Designer</option>
+
+
+            </select>
+       <button id="searchButton">Search</button>
+    </div>
+
+    <ul id="itemList">
+        <li>Software Developer</li>
+        <li>Data Scientist</li>
+        <li>Chartered Accountant</li>
+        <li>Doctor (General Practitioner and Specialist)</li>
+        <li>Artificial Intelligence Engineer</li>
+        <li>Management Consultant</li>
+        <li>Investment Banker</li>
+        <li>Cybersecurity Analyst</li>
+        <li>Blockchain Developer</li>
+        <li>Product Manager</li>
+        <li>Marketing Manager</li>
+        <li>Project Manager</li>
+        <li>Full Stack Developer</li>
+        <li>HR Manager</li>
+        <li>Machine Learning Engineer</li>
+        <li>Cloud Solutions Architect</li>
+        <li>Graphic Designer</li>
+        <li>Content Writer</li>
+        <li>Sales Manager</li>
+        <li>Operations Manager</li>
+    </ul>
+
+    <div class="resume-ad">
+        <h2> <a href="https://resume.io/"> Get experts to craft your resume!</h2>
+        <p>Tailor it as per your needs by sharing your feedback</p>
+        <button onclick="showInfo('resume')">Know more</button> </a>
+    </div>
+
+    <div class="news-ad">
+        <h2><a href="https://www.employmentnews.gov.in/NewEmp/Home.aspx" target="_blank">Get the latest news and job information!</a></h2>
+        <p><b>Stay updated with the newest job opportunities and industry news by clicking the link above.</b></p>
+    </div>
+
+
+    <div class="job-buttons">
+        <button onclick="window.location.href='job10.html'">Software Developer</button>
+        <button onclick="window.location.href='job11.html'">Data Scientist</button>
+        <button onclick="window.location.href='job12.html'">Cybersecurity Analyst</button>
+        <button onclick="window.location.href='job13.html'">Healthcare Professional</button>
+        <button onclick="window.location.href='job14.html'">Digital Marketing Specialist</button>
+        <button onclick="window.location.href='job15.html'">AI/Machine Learning Engineer</button>
+    </div>
+
+
+    <script>
+
+
+        document.getElementById('searchButton').addEventListener('click', function () {
+            const searchInput = document.getElementById('searchInput').value.toLowerCase();
+            const items = document.querySelectorAll('#itemList li');
+            const itemList = document.getElementById('itemList');
+
+            let hasResults = false;
+
+            items.forEach(item => {
+                if (item.textContent.toLowerCase().includes(searchInput)) {
+                    item.style.display = 'list-item';
+                    hasResults = true;
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+
+            // Show the job list only if there are matching results
+            itemList.style.display = hasResults ? 'block' : 'none';
+        });
+        document.getElementById('searchButton').addEventListener('click', function () {
+            const selectedJob = document.getElementById('jobDropdown').value.toLowerCase();
+
+            switch (selectedJob) {
+                case 'software engineer - full stack':
+                    window.location.href = 'softwareengineering.html';
+                    break;
+                case 'product manager':
+                    window.location.href = 'Product Manager.html';
+                    break;
+                case 'marketing executive':
+                    window.location.href = 'Marketing executive.html';
+                    break;
+                case 'data analyst':
+                    window.location.href = 'dataanalyst.html';
+                    break;
+                case 'graphic designer':
+                    window.location.href = 'graphic designer.html';
+                    break;
+
+                case 'product designer':
+                    window.location.href = 'Product Designer.html';
+                    break;
+                default:
+                    alert('Please select a valid job.');
+            }
+        });
+    </script>
+
+</main>
+</body>
+</html>

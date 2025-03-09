@@ -1,0 +1,121 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: rgba(230, 164, 253, 0.8);
+    margin: 0;
+    padding: 20px;
+}
+
+.job-listing {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.job-card {
+    background-color: rgba(230, 164, 253, 0.8);
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgb(7, 7, 7);
+    padding: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.company-logo img {
+    width: 50px;
+    height: 50px;
+    margin-right: 20px;
+}
+
+.job-details h3 {
+    margin: 0;
+    font-size: 18px;
+    color: #333;
+}
+
+.job-details p {
+    margin: 5px 0;
+    color: #777;
+}
+
+.apply-btn, .save-btn {
+    margin-top: 20px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.apply-btn {
+    background-color: #145693;
+    color: #145693;
+}
+
+.save-btn {
+    background-color: #4e1e78;
+    color: #4e1e78;
+    margin-left: 10px;
+}
+/* Styling for the "Book an Appointment" button */
+.book-appointment-button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    background-color: #008CBA;
+    color: white;
+    border-radius: 5px;
+}
+
+.book-appointment-button:hover {
+    background-color: #007bb5;
+}
+
+/* Hidden form container */
+.appointment-form-container {
+    display: none;
+    margin-top: 20px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+/* Styling for form inputs */
+.appointment-form-container input {
+    margin: 5px 0;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    width: 100%;
+}
+
+/* Styling for form buttons */
+.appointment-form-container button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+}
+
+.appointment-form-container button[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.appointment-form-container button[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+.appointment-form-container button[type="button"] {
+    background-color: #f44336;
+    color: white;
+}
+
+.appointment-form-container button[type="button"]:hover {
+    background-color: #da190b;
+}
+

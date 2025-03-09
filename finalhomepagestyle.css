@@ -1,0 +1,127 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #ffffff;
+}
+
+.logo img {
+    height: 40px;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    margin-left: 20px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+}
+
+.auth-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.auth-buttons button {
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.login {
+    background-color: #ffffff;
+    color: #333;
+    border: 2px solid #333;
+}
+
+.register {
+    background-color: #ff5722;
+    color: #ffffff;
+}
+
+main {
+    text-align: center;
+    padding: 50px 20px;
+}
+
+
+.resume-ad {
+    background-color: #00a5a8;
+    color: #ffffff;
+    padding: 20px;
+    border-radius: 20px;
+    margin: 20px 0;
+}
+.news-ad {
+    text-align: center; /* Aligns the text and link to the right side of the container */
+    margin: 20px; /* Optional: Adds margin around the container */
+}
+
+.news-ad a {
+    color: #007bff; /* Optional: Changes the color of the link */
+    text-decoration: none; /* Optional: Removes underline from the link */
+}
+
+.news-ad a:hover {
+    text-decoration: underline; /* Optional: Adds underline on hover */
+}
+
+
+.categories {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+}
+
+.categories button {
+    border: none;
+    background-color: #f5f5f5;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+}
+ button:hover {
+     background-color: blue;
+ }
+.job-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px; /* Adjust gap between buttons */
+    justify-content: center; /* Center buttons horizontally */
+    padding: 20px; /* Optional: Adds padding around the container */
+}
+
+.job-buttons button {
+    font-size: 18px; /* Increase button text size */
+    padding: 15px 30px; /* Increase button size */
+    border: none; /* Remove default border */
+    border-radius: 5px; /* Optional: Rounded corners */
+    background-color: #4e1e78; /* Button background color */
+    color: white; /* Button text color */
+    cursor: pointer; /* Show a pointer cursor on hover */
+    transition: background-color 0.3s ease; /* Smooth color transition on hover */
+}
+
+.job-buttons button:hover {
+    background-color: #4e1e78; /* Darker background color on hover */
+}

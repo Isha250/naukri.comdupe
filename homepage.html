@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Search</title>
+    <link rel="stylesheet" href="finalhomepagestyle.css">
+    <style>
+        /* Your existing styles */
+        .profile-icon {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+        .profile-info {
+            display: none;
+            position: absolute;
+            right: 10px;
+            top: 60px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        .profile-info p {
+            margin: 0;
+            font-size: 14px;
+        }
+
+        /* Basic styling for the buttons */
+        .categories button {
+            margin: 5px;
+            padding: 10px 15px;
+            font-size: 16px;
+            cursor: pointer;
+            border: 1px solid #ddd;
+            background-color: #f0f0f0;
+            border-radius: 5px;
+        }
+
+        .categories button:hover {
+            background-color: #ddd;
+        }
+
+        /* Styling for the "Know more" button */
+        .resume-ad button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            background-color: #4CAF50;
+            color: white;
+            border-radius: 5px;
+        }
+
+        .resume-ad button:hover {
+            background-color: #45a049;
+        }
+
+        /* Container for displaying additional information */
+        .info-container {
+            margin-top: 10px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+            display: none; /* Initially hidden */
+        }
+        .search-bar-container {
+            display: flex;
+            justify-content: center; /* Center the search bar horizontally */
+            margin: 20px 0; /* Adds space above and below the search bar */
+            width: 100%; /* Ensure the container takes up the full width of the page */
+        }
+        .search-bar {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background-color: #fff;
+            padding: 10px 20px;
+            border-radius: 30px; /* Rounded corners */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Optional: Adds a shadow for depth */
+        }
+
+        .search-bar select,
+        .search-bar input {
+            border: none;
+            outline: none;
+            font-size: 16px;
+            color: #6c757d; /* Gray text color */
+            background-color: transparent;
+            padding: 10px;
+            flex: 1;
+        }
+
+        .search-bar select {
+            -webkit-appearance: none; /* Removes default dropdown arrow in webkit browsers */
+            -moz-appearance: none; /* Removes default dropdown arrow in Firefox */
+            appearance: none;
+            background-color: transparent;
+        }
+
+        .search-bar button {
+            background-color: #0066ff; /* Blue background color */
+            color: #fff; /* White text color */
+            padding: 10px 20px;
+            border: none;
+            border-radius: 20px; /* Rounded corners */
+            cursor: pointer;
+            font-size: 16px;
+            white-space: nowrap; /* Prevents the text from wrapping */
+        }
+
+        .search-bar button:hover {
+            background-color: #0056d2; /* Darker blue on hover */
+        }
+
+        /* Styling for the job list */
+        #itemList {
+            list-style-type: none;
+            padding: 0;
+            margin-top: 20px;
+            max-height: 200px;
+            overflow-y: auto;
+            width: 100%;
+            text-align: center;
+            display: none; /* Initially hidden */
+        }
+
+        #itemList li {
+            padding: 10px;
+            border: 1px solid #ddd;
+            margin: 5px;
+            background-color: #f0f0f0;
+            border-radius: 5px;
+        }
+
+        #itemList li:hover {
+            background-color: #ddd;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <div class="logo">
+        <a href="gpt.html"> <img src="logo.jpg" alt="Naukri Logo">
+            <p>Profile</p></a>
+    </div>
+    <nav>
+        <ul>
+            <li><a href="afterhomepage.html">Jobs</a></li>
+            <li><a href="afterhomepage.html">Companies</a></li>
+            <li><a href="afterhomepage.html">Services</a></li>
+        </ul>
+    </nav>
+    <div class="auth-buttons">
+        <img src="profile-icon.jpg" alt="Profile Icon" class="profile-icon" onclick="toggleProfileInfo()">
+        <div class="profile-info">
+            <p><strong>First Name:</strong> <%= profile.firstName %></p>
+            <p><strong>Last Name:</strong> <%= profile.lastName %></p>
+            <p><strong>Email:</strong> <%= profile.email %</p>
+            <a href="finallogin.html">Logout</a> <!-- Adjust logout route if needed -->
+        </div>
+    </div>
+</header>
+
+<main>
+    <h1>Find your dream job now</h1>
+    <p>Jobs for you to explore</p>
+    <div class="search-bar">
+        <select id="jobDropdown">
+            <option value="">Select a job...</option>
+            <option value="Software Engineer - Full Stack">Software Engineer - Full Stack</option>
+            <option value="Product Manager">Product Manager</option>
+            <option value="Marketing Executive">Marketing Executive</option>
+            <option value="Data Analyst">Data Analyst</option>
+            <option value="Graphic Designer">Graphic Designer</option>
+            <option value="Product Designer">Product Designer</option>
+        </select>
+        <button id="searchButton">Search</button>
+    </div>
+
+    <ul id="itemList">
+        <!-- Job list items -->
+    </ul>
+
+    <div class="resume-ad">
+        <h2><a href="https://resume.io/">Get experts to craft your resume!</a></h2>
+        <p>Tailor it as per your needs by sharing your feedback</p>
+        <button onclick="showInfo('resume')">Know more</button>
+    </div>
+
+    <div class="news-ad">
+        <h2><a href="https://www.employmentnews.gov.in/NewEmp/Home.aspx" target="_blank">Get the latest news and job information!</a></h2>
+        <p><b>Stay updated with the newest job opportunities and industry news by clicking the link above.</b></p>
+    </div>
+
+    <div class="job-buttons">
+        <!-- Job buttons -->
+    </div>
+    <div class="job-buttons">
+        <button onclick="window.location.href='job10.html'">Software Developer</button>
+        <button onclick="window.location.href='job11.html'">Data Scientist</button>
+        <button onclick="window.location.href='job12.html'">Cybersecurity Analyst</button>
+        <button onclick="window.location.href='job13.html'">Healthcare Professional</button>
+        <button onclick="window.location.href='job14.html'">Digital Marketing Specialist</button>
+        <button onclick="window.location.href='job15.html'">AI/Machine Learning Engineer</button>
+    </div>
+
+    <script>
+       function toggleProfileInfo() {
+    var profileInfo = document.getElementById("profileInfo");
+    if (profileInfo.style.display === "none" || profileInfo.style.display === "") {
+        profileInfo.style.display = "block";
+    } else {
+        profileInfo.style.display = "none";
+    }
+}
+
+            // JavaScript function to show the info in the container
+            function showInfo(category) {
+                var infoContainer = document.getElementById('infoContainer');
+                var infoText = document.getElementById('infoText');
+
+                // Define the information for each category
+                var infoData = {
+                    resume: "Naukri.com is an Indian job portal that connects job seekers with employers. It offers advanced search filters, personalized job recommendations, and company insights with reviews and ratings to help users find suitable jobs and research potential employers. The platform provides resume services, including professional writing and feedback, and allows users to set up job alerts and track their application status. Additionally, Naukri.com facilitates interview scheduling with calendar integration, offers learning and upskilling opportunities through online courses, and supports networking via its community forums. The Naukri mobile app ensures on-the-go access, while employers benefit from resume database access, job posting services, and branding solutions.",
+                    science: "Explore opportunities in Science and Research, where you can contribute to groundbreaking discoveries and advancements in various scientific fields.",
+                    it: "Information Technology jobs are in high demand. Join the tech revolution by exploring roles in software development, cybersecurity, data analysis, and more.",
+                    engineering: "Engineering offers diverse career paths in civil, mechanical, electrical, and more. Shape the world with your technical skills.",
+                    finance: "Finance professionals manage money, analyze trends, and drive economic growth. Discover roles in banking, investment, and financial planning.",
+                    education: "Join the Education sector to shape minds and build the future. Explore roles in teaching, administration, and educational technology.",
+                    marketing: "Marketing and Sales professionals are the bridge between businesses and consumers. Explore careers in advertising, digital marketing, and sales management.",
+                    arts: "Arts and Entertainment offer creative careers in music, film, theater, and visual arts. Express your creativity and connect with audiences.",
+                    hr: "Human Resources is all about managing people and fostering a positive workplace culture. Explore roles in recruitment, employee relations, and more.",
+                    legal: "Legal careers involve upholding justice and navigating the complexities of law. Discover opportunities in legal practice, corporate law, and public policy.",
+                    operations: "Operations and Logistics professionals ensure that businesses run smoothly. Explore careers in supply chain management, operations analysis, and more.",
+                    customer: "Customer Service roles are essential for maintaining customer satisfaction. Explore opportunities in customer support, service management, and more.",
+                    healthcare: "Healthcare is a rapidly growing field. Explore careers in nursing, medicine, healthcare administration, and more."
+                };
+
+                // Set the text and display the container
+                infoText.textContent = infoData[category];
+                infoContainer.style.display = 'block';
+            }
+
+            document.getElementById('searchButton').addEventListener('click', function() {
+                const searchInput = document.getElementById('searchInput').value.toLowerCase();
+                const items = document.querySelectorAll('#itemList li');
+                const itemList = document.getElementById('itemList');
+
+                let hasResults = false;
+
+                items.forEach(item => {
+                    if (item.textContent.toLowerCase().includes(searchInput)) {
+                        item.style.display = 'list-item';
+                        hasResults = true;
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+
+                // Show the job list only if there are matching results
+                itemList.style.display = hasResults ? 'block' : 'none';
+            });
+        document.getElementById('searchButton').addEventListener('click', function () {
+            const searchInput = document.getElementById('searchInput').value.toLowerCase();
+            const items = document.querySelectorAll('#itemList li');
+            const itemList = document.getElementById('itemList');
+
+            let hasResults = false;
+
+            items.forEach(item => {
+                if (item.textContent.toLowerCase().includes(searchInput)) {
+                    item.style.display = 'list-item';
+                    hasResults = true;
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+
+            // Show the job list only if there are matching results
+            itemList.style.display = hasResults ? 'block' : 'none';
+        });
+        document.getElementById('searchButton').addEventListener('click', function () {
+            const selectedJob = document.getElementById('jobDropdown').value.toLowerCase();
+
+            switch (selectedJob) {
+                case 'software engineer - full stack':
+                    window.location.href = 'softwareengineering.html';
+                    break;
+                case 'product manager':
+                    window.location.href = 'Product Manager.html';
+                    break;
+                case 'marketing executive':
+                    window.location.href = 'Marketing executive.html';
+                    break;
+                case 'data analyst':
+                    window.location.href = 'dataanalyst.html';
+                    break;
+                case 'graphic designer':
+                    window.location.href = 'graphic designer.html';
+                    break;
+
+                case 'product designer':
+                    window.location.href = 'Product Designer.html';
+                    break;
+                default:
+                    alert('Please select a valid job.');
+            }
+        });
+    </script>
+</main>
+</body>
+</html>
